@@ -1,0 +1,48 @@
+body {
+    font-family: "Scope One", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans", sans-serif;
+}
+
+.logo_pur_beurre {
+    height: 2rem;
+}
+
+.colette {
+    width: 80px;
+    height: 300px;
+}
+
+.remy {
+    width: 200px;
+    height: 300px;
+}
+
+#services {
+    background-color: #DE9440;
+}
+
+footer {
+    background-color: #345A61;
+}
+
+footer a{
+    color: white;
+}
+
+#mainNav {
+    background-color: #345A61;
+}
+
+#button-addon2 {
+    background-color: #C45525;
+    color: white;
+    outline: none;
+}
+
+#carrot {
+    width: 60px;
+    height: 40px;
+}
