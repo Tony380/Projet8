@@ -52,3 +52,13 @@ footer a{
     width: 100px;
     height : 170px;
 }
+
+#login {
+    padding-top: 8rem;
+    padding-bottom: calc(10rem - 4.5rem);
+    background-image: url("../img/olenka-kotyk.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+}
