@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'django_extensions',
+    'crispy_forms',
     'product',
     'user',
 ]
@@ -134,3 +135,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
