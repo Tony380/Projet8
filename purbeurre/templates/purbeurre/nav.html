@@ -13,15 +13,21 @@
                         <input type="text" class="form-control" placeholder="Chercher" aria-label="Recipient's username" aria-describedby="button-addon2">
                     </div>
                 </li>
-                <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="#">
-                    <i class="fas fa-user fa-2x ml-2" title="Mon profil"></i>
-                </a></li>
-                <li class="nav-item mt-2 ml-2"><a class="nav-link js-scroll-trigger" href="#">
-                    <img id="carrot" src="{% static 'img/carrot.png' %}" title="Mes favoris">
-                </a></li>
-                <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="#">
-                    <i class="fas fa-sign-out-alt fa-2x ml-2" title="Se déconnecter"></i>
-                </a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'user:profile' %}">
+                        <i class="fas fa-user fa-2x ml-2" title="Mon profil"></i>
+                    </a></li>
+                    <li class="nav-item mt-2 ml-2"><a class="nav-link js-scroll-trigger" href="#">
+                        <img id="carrot" src="{% static 'img/carrot.png' %}" title="Mes favoris">
+                    </a></li>
+                    <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'user:logout' %}">
+                        <i class="fas fa-sign-out-alt fa-2x ml-2" title="Se déconnecter"></i>
+                    </a></li>
+                {% else %}
+                    <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'user:login' %}">
+                        <i class="fas fa-sign-in-alt fa-2x ml-2" title="Se connecter"></i>
+                    </a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
