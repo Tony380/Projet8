@@ -6,13 +6,13 @@
 <section id="login">
     <div class="container">
         <div class="row justify-content-center text-primary">
-            <h1>Créer son compte</h1>
+            <h1>Créer un compte</h1>
         </div>
         <div class="row justify-content-center">
             <form method="post" class="bg-light p-3 w-60">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button type="submit" class="btn btn-primary">Créer son compte</button>
+                <button type="submit" class="btn btn-primary">Créer un compte</button>
                 <span class="ml-2">Vous avez déjà un compte? <a href="{% url 'user:login' %}">Se connecter</a></span>
             </form>
         </div>
