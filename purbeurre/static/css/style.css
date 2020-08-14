@@ -60,3 +60,10 @@ footer a{
     background-attachment: scroll;
     background-size: cover;
 }
+
+@media (max-width: 400px) {
+    .portrait {
+        width: 200px;
+        height: 200px;
+    }
+}
