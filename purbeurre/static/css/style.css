@@ -10,14 +10,11 @@ h1, h2, h3, h4, h5, h6 {
     height: 2rem;
 }
 
-.colette {
-    width: 80px;
-    height: 300px;
-}
-
-.remy {
-    width: 200px;
-    height: 300px;
+.portrait {
+    border: 10px solid #C45525;
+    border-radius: 10px;
+    width: 350px;
+    height: 350px;
 }
 
 #services {
