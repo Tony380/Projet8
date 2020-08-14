@@ -17,8 +17,8 @@
                     <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'user:profile' %}">
                         <i class="fas fa-user fa-2x ml-2" title="Mon profil"></i>
                     </a></li>
-                    <li class="nav-item mt-2 ml-2"><a class="nav-link js-scroll-trigger" href="#">
-                        <img id="carrot" src="{% static 'img/carrot.png' %}" title="Mes favoris">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">
+                        {% include 'carrot.svg' %}
                     </a></li>
                     <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'user:logout' %}">
                         <i class="fas fa-sign-out-alt fa-2x ml-2" title="Se déconnecter"></i>
