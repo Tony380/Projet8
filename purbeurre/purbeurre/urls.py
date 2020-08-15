@@ -25,6 +25,9 @@ urlpatterns = [
     path('product/', include('product.urls')),
     path('user/', include('user.urls')),
 ]
+handler404 = views.my_404_view
+handler500 = views.my_500_view
+
 
 if settings.DEBUG:
     import debug_toolbar
