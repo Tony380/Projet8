@@ -13,7 +13,7 @@
                 {% csrf_token %}
                 {{ form|crispy }}
                 <button type="submit" class="btn btn-primary">Créer un compte</button>
-                <span class="ml-2">Vous avez déjà un compte? <a href="{% url 'user:login' %}">Se connecter</a></span>
+                <p class="mt-3">Vous avez déjà un compte? <a href="{% url 'user:login' %}">Se connecter</a></p>
             </form>
         </div>
     </div>
