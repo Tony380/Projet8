@@ -10076,6 +10076,23 @@ hr.light {
     padding-right: 0;
   }
 
+  #mainNav.navbar-scrolled {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #345A61;
+  }
+  #mainNav.navbar-scrolled .navbar-brand {
+    color: #fff;
+  }
+  #mainNav.navbar-scrolled .navbar-brand:hover {
+    color: #f4623a;
+  }
+  #mainNav.navbar-scrolled .navbar-nav .nav-item .nav-link {
+    color: #fff;
+  }
+  #mainNav.navbar-scrolled .navbar-nav .nav-item .nav-link:hover {
+    color: #f4623a;
+  }
+
 }
 
 header.masthead {

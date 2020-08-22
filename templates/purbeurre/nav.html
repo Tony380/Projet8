@@ -9,15 +9,15 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <li class="nav-item">
-                    <form class="input-group mt-2" action="#" method="get">
-                        <input type="text" class="form-control" placeholder="Chercher" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <form class="input-group mt-2" action="{% url 'product:search' %}" method="get">
+                        <input type="text" class="form-control" placeholder="Chercher" name="query">
                     </form>
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'user:profile' %}">
                         <i class="fas fa-user fa-2x ml-2" title="Mon profil"></i>
                     </a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#" title="Mes favoris">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'product:favorite' %}" title="Mes favoris">
                         {% include 'carrot.svg' %}
                     </a></li>
                     <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'user:logout' %}">

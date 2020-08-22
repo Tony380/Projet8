@@ -31,25 +31,19 @@ footer a{
     color: white;
 }
 
-#mainNav {
-    background-color: #345A61;
+footer a:hover {
+    text-decoration: none;
 }
 
 #button-addon2 {
     background-color: #C45525;
     color: white;
-    outline: none;
 }
 
 #carrot {
     width: 40px;
     height: 60px;
     fill: currentcolor;
-}
-
-#noun {
-    width: 70px;
-    height : 190px;
 }
 
 #login {
@@ -62,9 +56,75 @@ footer a{
     background-size: cover;
 }
 
+#search {
+    padding-top: 8rem;
+    padding-bottom: calc(10rem - 4.5rem);
+    background-image: url("../img/greg-jeanneau.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+}
+
+.image_url {
+    max-width: 250px;
+    height: 250px;
+}
+
+.nutriscore {
+    color: white;
+    position: absolute;
+    right: -20px;
+    top: -20px;
+    font-size: 30px;
+    font-weight: bold;
+    border: 1px solid;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    display: inline;
+}
+
+.nutriscore-a {
+    background-color: #07942d;
+}
+
+.nutriscore-b {
+    background-color: #11ff00;
+}
+
+.nutriscore-c {
+    background-color: #f6ff00;
+}
+
+.nutriscore-d {
+    background-color: #f2ab11;
+}
+
+.nutriscore-e {
+    background-color: #ff2a00;
+}
+
+.short{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.legal {
+    width: 300px;
+    height: 200px;
+    margin: auto;
+    margin-top: 20px;
+}
+
 @media (max-width: 400px) {
     .portrait {
         width: 200px;
         height: 200px;
+    }
+
+    .btn {
+        font-size: 13px;
     }
 }
