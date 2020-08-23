@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Produit{% endblock %}
+{% block title %}{{ prod.name }}{% endblock %}
 {% block content %}
     <section id="prod" class="h-50 py-5" style="background-image: url({{ prod.image }})">
         <div class="container">
