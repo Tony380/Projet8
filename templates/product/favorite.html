@@ -9,12 +9,12 @@
             </div>
         </div>
     </section>
+{% if page_obj %}
     <section class="h-auto">
         <div class="container">
             <div class="row mt-5">
-                {% if page_obj %}
                     {% for fav in page_obj %}
-                        <div class="col-lg-4 col-xs-12 my-5">
+                        <div class="col-md-4 col-xs-12 my-5">
                             <div class="card border-primary">
                                 <div class="nutriscore nutriscore-{{ fav.sub.nutriscore }} text-center">
                                     {{ fav.sub.nutriscore|upper }}
@@ -31,13 +31,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 my-auto">
+                        <div class="col-md-4 my-auto">
                             <h2 class="text-center mb-5">Remplace</h2>
                             <a href="{% url 'product:delete' fav=fav.id %}" class="btn btn-danger d-block w-50 mx-auto">
                                 Supprimer ce favori
                             </a>
                         </div>
-                        <div class="col-lg-4 col-xs-12 my-5">
+                        <div class="col-md-4 my-5">
                             <div class="card border-primary">
                                 <div class="nutriscore nutriscore-{{ fav.prod.nutriscore }} text-center">
                                     {{ fav.prod.nutriscore|upper }}
@@ -54,34 +54,36 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="container pagination justify-content-center mb-5">
-                            <span class="step-links">
-                                {% if page_obj.has_previous %}
-                                    <a href="?page=1">&laquo; Début</a>
-                                    <a href="?page={{ page_obj.previous_page_number }}">Page précédente</a>
-                                {% endif %}
-
-                                <span class="current">
-                                    Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
-                                </span>
-
-                                {% if page_obj.has_next %}
-                                    <a href="?page={{ page_obj.next_page_number }}">Page suivante</a>
-                                    <a href="?page={{ page_obj.paginator.num_pages }}">Fin &raquo;</a>
-                                {% endif %}
-                            </span>
-                        </div>
                     {% endfor %}
-                {% else %}
-                <div class="container" style="height: 230px;">
-                    <div class="row">
-                        <div class="col">
-                            <h2 class="text-center">Vous n'avez actuellement aucun favori</h2>
-                        </div>
-                    </div>
+                <div class="container pagination justify-content-center mb-5">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1">&laquo; Début</a>
+                            <a href="?page={{ page_obj.previous_page_number }}">Page précédente</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}">Page suivante</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">Fin &raquo;</a>
+                        {% endif %}
+                    </span>
                 </div>
-                {% endif %}
             </div>
         </div>
     </section>
+{% else %}
+    <section class="h-75 mt-5">
+        <div class="container" style="height: 230px;">
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-center">Vous n'avez actuellement aucun favori</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
 {% endblock %}
