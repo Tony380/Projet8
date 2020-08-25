@@ -142,6 +142,10 @@ footer a:hover {
     .border-primary {
         width: 320px;
     }
+
+    .new {
+        font-size: 10px;
+    }
 }
 
 @media (max-width: 768px) {
