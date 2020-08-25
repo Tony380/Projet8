@@ -6,17 +6,22 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def search(request):
+    """ Display product or products matching the user's request """
     query = request.GET.get('query')
     if query:
+        # search by product name
         products = Product.objects.filter(name__icontains=query).order_by('nutriscore', 'id')
 
+        # if nothing is found, search by brands name
         if not products.exists():
             products = Product.objects.filter(brands__icontains=query).order_by('nutriscore', 'id')
 
+        # if nothing is found
         if not products.exists():
             messages.success(request, "Nous n'avons trouvé aucun produit correspondant à votre recherche")
             return redirect('index')
 
+        # Paginate the results
         paginator = Paginator(products, 9)
         page_number = request.GET.get('page', 1)
         try:
@@ -36,12 +41,14 @@ def search(request):
 
 
 def product(request, product_id):
+    """ Display the product's information """
     prod = Product.objects.get(id=product_id)
     context = {'prod': prod}
     return render(request, 'product/product.html', context)
 
 
 def substitute(request, product_id):
+    """ Display substitutes list """
     prod = Product.objects.get(id=product_id)
     cat = prod.categories.get()
     subs = cat.products.all().order_by('nutriscore', 'id')
@@ -53,6 +60,7 @@ def substitute(request, product_id):
             sub_list.append(i)
     sub_list.remove(prod)
 
+    # Paginate the results
     paginator = Paginator(sub_list, 9)
     page_number = request.GET.get('page', 1)
     try:
@@ -67,6 +75,7 @@ def substitute(request, product_id):
 
 
 def save(request, product_id, prod_id):
+    """ Saves product and substitute """
     user = request.user
     try:
         fav = Favorite.objects.filter(user_id=user.id, sub_id=product_id, prod_id=prod_id)
@@ -83,8 +92,11 @@ def save(request, product_id, prod_id):
 
 
 def favorite(request):
+    """ Display user's favorites """
     user = request.user
     favs = Favorite.objects.filter(user_id=user.id)
+
+    # Paginate the results
     paginator = Paginator(favs, 3)
     page_number = request.GET.get('page', 1)
     try:
@@ -99,6 +111,7 @@ def favorite(request):
 
 
 def delete(request, fav):
+    """ Delete user's favorite """
     favori = Favorite.objects.filter(id=fav)
     favori.delete()
     messages.success(request, 'Le favori à bien été supprimé')
