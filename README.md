@@ -22,16 +22,18 @@ Pour utiliser l'application sur votre serveur local:
 2. Installez les dépendances du fichier requirements.txt.
 3. Vous aurez besoin de créer une base de données avec postgreSQL nommée 'purbeurre'.
 Vous pouvez configurer les options qui vous sont personnelles dans le fichier settings.py
-dans la partie DATABASE = {}.
-4. Toujours dans le fichier settings.py, configurez l'option 'ALLOWED_HOSTS' de la manière suivante: 
-ALLOWED_HOSTS = ['*']
+dans la partie DATABASE = { }.
+4. Toujours dans le fichier settings.py, configurez l'option 'ALLOWED_HOSTS' de la manière suivante:
+
+        ALLOWED_HOSTS = ['*']
+        
 5. Générez une clé secrète dans la console comme suit:
 
-    $ python
+        $ python
     
-    import random, string
+        import random, string
     
-    "".join([random.choice(string.printable) for _ in range(24)])
+        "".join([random.choice(string.printable) for _ in range(24)])
 
 6. Gardez cette clé dans vos variables d'environnement en tant que 'SECRET_KEY'.
 7. Enfin, lancez le fichier manage.py en console de cette manière:
