@@ -25,15 +25,18 @@ def search(request):
     query = request.GET.get('query')
     if query:
         # search by product name
-        products = Product.objects.filter(name__icontains=query).order_by('nutriscore', 'id')
+        products = Product.objects.filter(
+            name__icontains=query).order_by('nutriscore', 'id')
 
         # if nothing is found, search by brands name
         if not products.exists():
-            products = Product.objects.filter(brands__icontains=query).order_by('nutriscore', 'id')
-
+            products = Product.objects.filter(
+                brands__icontains=query).order_by('nutriscore', 'id')
         # if nothing is found
         if not products.exists():
-            messages.success(request, "Nous n'avons trouvé aucun produit correspondant à votre recherche")
+            messages.success(request,
+                             "Nous n'avons trouvé aucun produit "
+                             "correspondant à votre recherche")
             return redirect('index')
 
         context = {'page_obj': paginate(request, products),
@@ -75,9 +78,13 @@ def save(request, product_id, prod_id):
     """ Saves product and substitute """
     user = request.user
     try:
-        fav = Favorite.objects.filter(user_id=user.id, sub_id=product_id, prod_id=prod_id)
+        fav = Favorite.objects.filter(user_id=user.id,
+                                      sub_id=product_id,
+                                      prod_id=prod_id)
         if not fav:
-            Favorite.objects.create(user_id=user.id, sub_id=product_id, prod_id=prod_id)
+            Favorite.objects.create(user_id=user.id,
+                                    sub_id=product_id,
+                                    prod_id=prod_id)
             messages.success(request, 'Produit sauvegardé')
             return redirect('index')
         else:

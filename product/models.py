@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 
 
 class Product(models.Model):
-    name = models.CharField(verbose_name="Nom du produit", max_length=100, unique=True)
-    brands = models.CharField(verbose_name="Marques du produit", max_length=100)
+    name = models.CharField(verbose_name="Nom du produit",
+                            max_length=100, unique=True)
+    brands = models.CharField(verbose_name="Marques du produit",
+                              max_length=100)
     link = models.URLField(unique=True)
     nutriscore = models.CharField(max_length=1)
     image = models.URLField()
@@ -36,12 +38,17 @@ class Category(models.Model):
 
 
 class Favorite(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users')
-    sub = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='subs')
-    prod = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='prods')
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             related_name='users')
+    sub = models.ForeignKey(Product, on_delete=models.CASCADE,
+                            related_name='subs')
+    prod = models.ForeignKey(Product, on_delete=models.CASCADE,
+                             related_name='prods')
 
     def __str__(self):
-        return str(self.sub) + " remplace : " + str(self.prod) + " Sauvegardé par : " + str(self.user)
+        return str(self.sub) + " remplace : " + str(self.prod) \
+               + " Sauvegardé par : " \
+               + str(self.user)
 
     class Meta:
         verbose_name = "Favori"
