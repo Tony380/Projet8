@@ -129,13 +129,10 @@ footer a:hover {
 }
 
 @media (max-width: 576px) {
+
     .portrait {
         width: 200px;
         height: 200px;
-    }
-
-    .btn {
-        font-size: 13px;
     }
 
     .pagination {
@@ -148,8 +145,13 @@ footer a:hover {
 }
 
 @media (max-width: 768px) {
+
     .image_url {
         max-width: 200px;
         height: 200px;
+    }
+
+    .btn {
+        font-size: 13px;
     }
 }
