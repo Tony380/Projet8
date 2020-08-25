@@ -8,6 +8,7 @@ from django.contrib.auth.views import LoginView
 
 
 def register(request):
+    """ User registration function """
     if request.method == 'POST':
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -30,14 +31,17 @@ def register(request):
 
 @login_required
 def profile(request):
+    """ User's profile page """
     return render(request, 'profile.html')
 
 
 class LoginFormView(SuccessMessageMixin, LoginView):
+    """ Add a welcome message when user logs in """
     success_message = "Bienvenu! Vous êtes maintenant connecté"
 
 
 def logout_view(request):
+    """ User logout function """
     logout(request)
     messages.success(request, 'Au revoir! Vous êtes maintenant déconnecté')
     return redirect('index')
