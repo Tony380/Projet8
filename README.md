@@ -47,4 +47,3 @@ Elle est hébergée sur Heroku et utilisable [ici](https://purbeurre2020.herokua
 
 ## Information complétaire
 Le tableau Trello relatif à ce projet se trouve [ici](https://trello.com/b/RhX1abT3/projet-8 "Tableau Trello").
-
