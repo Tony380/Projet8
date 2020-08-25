@@ -5,6 +5,21 @@ from django.db import IntegrityError
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
+def paginate(request, args):
+    """ Paginate function """
+    paginator = Paginator(args, 9)
+    page_number = request.GET.get('page', 1)
+
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
+    return page_obj
+
+
 def search(request):
     """ Display product or products matching the user's request """
     query = request.GET.get('query')
@@ -21,17 +36,7 @@ def search(request):
             messages.success(request, "Nous n'avons trouvé aucun produit correspondant à votre recherche")
             return redirect('index')
 
-        # Paginate the results
-        paginator = Paginator(products, 9)
-        page_number = request.GET.get('page', 1)
-        try:
-            page_obj = paginator.page(page_number)
-        except PageNotAnInteger:
-            page_obj = paginator.page(1)
-        except EmptyPage:
-            page_obj = paginator.page(paginator.num_pages)
-
-        context = {'page_obj': page_obj,
+        context = {'page_obj': paginate(request, products),
                    'query': query}
         return render(request, 'product/search.html', context)
 
@@ -53,6 +58,7 @@ def substitute(request, product_id):
     cat = prod.categories.get()
     subs = cat.products.all().order_by('nutriscore', 'id')
     sub_list = []
+
     for i in subs:
         if i.nutriscore < prod.nutriscore:
             sub_list.append(i)
@@ -60,17 +66,8 @@ def substitute(request, product_id):
             sub_list.append(i)
     sub_list.remove(prod)
 
-    # Paginate the results
-    paginator = Paginator(sub_list, 9)
-    page_number = request.GET.get('page', 1)
-    try:
-        page_obj = paginator.page(page_number)
-    except PageNotAnInteger:
-        page_obj = paginator.page(1)
-    except EmptyPage:
-        page_obj = paginator.page(paginator.num_pages)
     context = {'prod': prod,
-               'page_obj': page_obj}
+               'page_obj': paginate(request, sub_list)}
     return render(request, 'product/substitute.html', context)
 
 
@@ -96,17 +93,8 @@ def favorite(request):
     user = request.user
     favs = Favorite.objects.filter(user_id=user.id)
 
-    # Paginate the results
-    paginator = Paginator(favs, 3)
-    page_number = request.GET.get('page', 1)
-    try:
-        page_obj = paginator.page(page_number)
-    except PageNotAnInteger:
-        page_obj = paginator.page(1)
-    except EmptyPage:
-        page_obj = paginator.page(paginator.num_pages)
     context = {'user': user,
-               'page_obj': page_obj}
+               'page_obj': paginate(request, favs)}
     return render(request, 'favorite.html', context)
 
 
