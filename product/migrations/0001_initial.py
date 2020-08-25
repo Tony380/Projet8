@@ -6,7 +6,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -17,9 +16,18 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Product',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, unique=True, verbose_name='Nom du produit')),
-                ('brands', models.CharField(max_length=100, verbose_name='Marques du produit')),
+                ('id', models.AutoField(
+                    auto_created=True,
+                    primary_key=True,
+                    serialize=False,
+                    verbose_name='ID')),
+                ('name', models.CharField(
+                    max_length=100,
+                    unique=True,
+                    verbose_name='Nom du produit')),
+                ('brands', models.CharField(
+                    max_length=100,
+                    verbose_name='Marques du produit')),
                 ('link', models.URLField(unique=True)),
                 ('nutriscore', models.CharField(max_length=1)),
                 ('image', models.URLField()),
@@ -37,10 +45,22 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Favorite',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('prod', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='prods', to='product.product')),
-                ('sub', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='subs', to='product.product')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='users', to=settings.AUTH_USER_MODEL)),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
+                ('prod', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='prods',
+                    to='product.product')),
+                ('sub', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='subs',
+                    to='product.product')),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='users',
+                    to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'verbose_name': 'Favori',
@@ -51,9 +71,14 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Category',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, unique=True)),
-                ('products', models.ManyToManyField(related_name='categories', to='product.Product')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
+                ('name', models.CharField(max_length=100,
+                                          unique=True)),
+                ('products', models.ManyToManyField(related_name='categories',
+                                                    to='product.Product')),
             ],
             options={
                 'verbose_name': 'Catégorie',
