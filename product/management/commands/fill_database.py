@@ -1,3 +1,4 @@
+""" Contains database filler """
 from django.core.management.base import BaseCommand
 from product.models import Category, Product
 from django.db.utils import IntegrityError
@@ -8,6 +9,7 @@ class Command(BaseCommand):
     help = 'Fill the database with OpenFoodFacts data'
 
     def handle(self, *args, **options):
+        # Chosen categories
         name = ["Pâtes à tartiner aux noisettes et au cacao", "Muffins", "Biscuits", "Tortellini", "Viennoiseries",
                 "Taboulés", "Confitures", "Cassoulets", "Yaourts", "Sodas"]
         for element in name:
