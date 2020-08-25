@@ -10,10 +10,11 @@ Pour cela, l'application utilise la base de données d'OpenFoodFacts.
 Tapez le nom du produit que vous voulez substituer. 
 Une liste de substituts possibles apparaît.
 
-Vous pouvez voir la fiche de ce produit qui contient ses repères nutritionnels.
-
-Vous pouvez aussi selectionner ce produit afin de le sauvegarder dans vos favoris si 
+Vous pouvez selectionner ce produit afin de le sauvegarder dans vos favoris si 
 vous possédez un compte utilisateur.
+
+Vous pouvez aussi consulter la fiche de chaque produit. Vous y trouverez les repères nutritionnels
+ainsi qu'un lien vers la fiche d'OpenFoodFacts du produit.
 
 ## Installation et utilisation sur votre ordinateur
 Pour utiliser l'application sur votre serveur local:
