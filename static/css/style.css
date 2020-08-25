@@ -141,6 +141,10 @@ footer a:hover {
     .pagination {
         font-size: 11px;
     }
+
+    .border-primary {
+        width: 320px;
+    }
 }
 
 @media (max-width: 768px) {
