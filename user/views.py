@@ -41,6 +41,7 @@ class LoginFormView(SuccessMessageMixin, LoginView):
     success_message = "Bienvenu! Vous êtes maintenant connecté"
 
 
+@login_required
 def logout_view(request):
     """ User logout function """
     logout(request)
