@@ -3,6 +3,7 @@ from .models import Product, Favorite
 from django.contrib import messages
 from django.db import IntegrityError
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 
 
 def paginate(request, args):
@@ -74,6 +75,7 @@ def substitute(request, product_id):
     return render(request, 'product/substitute.html', context)
 
 
+@login_required
 def save(request, product_id, prod_id):
     """ Saves product and substitute """
     user = request.user
@@ -95,6 +97,7 @@ def save(request, product_id, prod_id):
         return redirect('index')
 
 
+@login_required
 def favorite(request):
     """ Display user's favorites """
     user = request.user
@@ -105,6 +108,7 @@ def favorite(request):
     return render(request, 'favorite.html', context)
 
 
+@login_required
 def delete(request, fav):
     """ Delete user's favorite """
     favori = Favorite.objects.filter(id=fav)
