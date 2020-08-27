@@ -92,7 +92,7 @@ class TestProductViews(TestCase):
         self.assertTemplateUsed(redirect('index.html'))
 
     def test_favorite_logged_in_view(self):
-        user = User.objects.create(username="john")
+        user = User.objects.first()
         self.client.force_login(user)
         response = self.client.get(reverse('product:favorite'))
         self.assertEquals(response.status_code, 200)
