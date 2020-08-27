@@ -41,7 +41,7 @@ class TestUserViews(TestCase):
         self.assertTemplateUsed(redirect('login.html'))
 
     def test_logout_logged_in_view(self):
-        user = User.objects.create(username="john")
+        user = User.objects.create(username="name")
         self.client.force_login(user)
         response = self.client.get(reverse('user:logout'))
         self.assertEqual(response.status_code, 302)
@@ -53,7 +53,7 @@ class TestUserViews(TestCase):
         self.assertTemplateUsed(redirect('login.html'))
 
     def test_profile_logged_in_view(self):
-        user = User.objects.create(username="john")
+        user = User.objects.create(username="name")
         self.client.force_login(user)
         response = self.client.get(reverse('user:profile'))
         self.assertEqual(response.status_code, 200)
