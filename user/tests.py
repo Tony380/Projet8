@@ -1,7 +1,8 @@
 from django.test import SimpleTestCase, TestCase
 from django.urls import reverse, resolve
 from django.contrib.auth.models import User
-from .views import *
+from .forms import RegisterForm
+from .views import register, LoginFormView, logout_view, profile, redirect
 
 
 class TestUserUrls(SimpleTestCase):
@@ -58,3 +59,30 @@ class TestUserViews(TestCase):
         response = self.client.get(reverse('user:profile'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'profile.html')
+
+
+class TestUserForms(TestCase):
+
+    def test_valid_data(self):
+        form = RegisterForm(data={
+            'username': 'name',
+            'email': 'email@gmail.com',
+            'password1': 'abdcef123',
+            'password2': 'abdcef123'
+        })
+        self.assertTrue(form.is_valid())
+
+    def test_no_valid_data(self):
+        form = RegisterForm(data={
+            'username': 'name',
+            'email': 'emailgmail.com',
+            'password1': 'abdcef123',
+            'password2': 'abdcef123'
+        })
+        self.assertFalse(form.is_valid())
+        self.assertEqual(len(form.errors), 1)
+
+    def test_no_data(self):
+        form = RegisterForm(data={})
+        self.assertFalse(form.is_valid())
+        self.assertEqual(len(form.errors), 4)
