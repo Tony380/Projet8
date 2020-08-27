@@ -84,7 +84,8 @@ class TestProductViews(TestCase):
         self.assertTemplateUsed(response, 'product/substitute.html')
 
     def test_save_logged_in_view(self):
-        self.client.login()
+        user = User.objects.first()
+        self.client.force_login(user)
         prod = Product.objects.first().id
         sub_id = Product.objects.last().id
         response = self.client.get(reverse('product:save', args=[prod, sub_id]))
@@ -99,7 +100,8 @@ class TestProductViews(TestCase):
         self.assertTemplateUsed(response, 'favorite.html')
 
     def test_delete_logged_in_view(self):
-        self.client.login()
+        user = User.objects.first()
+        self.client.force_login(user)
         fav = Favorite.objects.first().id
         response = self.client.get(reverse('product:delete', args=[fav]))
         self.assertEquals(response.status_code, 302)
