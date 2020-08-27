@@ -34,8 +34,8 @@ class TestProductUrls(SimpleTestCase):
 class TestProductViews(TestCase):
 
     def setUp(self):
-        user = User.objects.create_user(username='name',
-                                        password='password123')
+        user = User.objects.create(username='name',
+                                   password='password123')
         cat = Category.objects.create(name='name')
         prod = Product.objects.create(name='name',
                                       brands='brand',
