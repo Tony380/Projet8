@@ -27,24 +27,23 @@ class Command(BaseCommand):
             for i in products:
                 # avoid products with missing data
                 try:
-                    if i.get("product_name", False) and \
-                            i.get("brands", False) and \
-                            i.get("nutrition_grades", False) and \
-                            i.get("image_front_url", False):
-                        product = Product.objects.create(
-                            name=i["product_name"],
-                            brands=i["brands"],
-                            link=i["url"],
-                            nutriscore=i["nutrition_grades"],
-                            image=i["image_front_url"],
-                            fat=i["nutriments"]["fat_100g"],
-                            saturated_fat=i["nutriments"]
-                            ["saturated-fat_100g"],
-                            sugars=i["nutriments"]["sugars_100g"],
-                            salt=i["nutriments"]["salt_100g"], )
-                        cat.products.add(product)
+                    product = Product.objects.create(
+                        name=i["product_name"],
+                        brands=i["brands"],
+                        link=i["url"],
+                        nutriscore=i["nutrition_grades"],
+                        image=i["image_front_url"],
+                        fat=i["nutriments"]["fat_100g"],
+                        saturated_fat=i["nutriments"]
+                        ["saturated-fat_100g"],
+                        sugars=i["nutriments"]["sugars_100g"],
+                        salt=i["nutriments"]["salt_100g"], )
+                    cat.products.add(product)
 
                 except IntegrityError:
+                    pass
+
+                except KeyError:
                     pass
 
         self.stdout.write('Base de données remplie avec succès')
