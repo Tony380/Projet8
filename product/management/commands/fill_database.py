@@ -15,8 +15,7 @@ class Command(BaseCommand):
                 "Taboulés", "Confitures", "Cassoulets", "Yaourts", "Sodas"]
         for element in name:
             self.stdout.write('Import de la catégorie {}'.format(element))
-            cat = Category(name=element)
-            cat.save()
+            cat = Category.objects.create(name=element)
             self.stdout.write(
                 'Import des produits de la catégorie {}'.format(element))
             payload = {"search_terms": "{}".format(cat),
