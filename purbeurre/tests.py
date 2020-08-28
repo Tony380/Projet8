@@ -1,9 +1,9 @@
-from django.test import SimpleTestCase
+from django.test import TestCase
 from django.urls import reverse, resolve
 from .views import index, legal
 
 
-class TestPurbeurreUrls(SimpleTestCase):
+class TestPurbeurreUrls(TestCase):
 
     def test_index_url(self):
         url = reverse('index')
@@ -14,7 +14,7 @@ class TestPurbeurreUrls(SimpleTestCase):
         self.assertEquals(resolve(url).func, legal)
 
 
-class TestPurbeurreViews(SimpleTestCase):
+class TestPurbeurreViews(TestCase):
 
     def test_index_view(self):
         response = self.client.get(reverse('index'))

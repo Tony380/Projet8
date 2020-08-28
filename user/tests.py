@@ -1,11 +1,11 @@
-from django.test import SimpleTestCase, TestCase
+from django.test import TestCase
 from django.urls import reverse, resolve
 from django.contrib.auth.models import User
 from .forms import RegisterForm
 from .views import register, LoginFormView, logout_view, profile, redirect
 
 
-class TestUserUrls(SimpleTestCase):
+class TestUserUrls(TestCase):
 
     def test_register_url(self):
         url = reverse('user:register')

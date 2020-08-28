@@ -1,11 +1,11 @@
-from django.test import SimpleTestCase, TestCase
+from django.test import TestCase
 from django.urls import reverse, resolve
 from .models import Category, Product, Favorite, User
 from .views import product, search, substitute, \
     save, delete, favorite, redirect
 
 
-class TestProductUrls(SimpleTestCase):
+class TestProductUrls(TestCase):
 
     def test_search_url(self):
         url = reverse('product:search')
