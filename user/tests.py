@@ -31,6 +31,11 @@ class TestUserViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'register.html')
 
+    def test_bad_register_view(self):
+        response = self.client.post(reverse('user:register'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'register.html')
+
     def test_login_view(self):
         response = self.client.get(reverse('user:login'))
         self.assertEqual(response.status_code, 200)
