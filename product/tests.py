@@ -139,8 +139,41 @@ class TestProductViews(TestCase):
 class TestStringModels(TestCase):
 
     def setUp(self):
-        Category.objects.create(name='name')
+        user = User.objects.create(username='name',
+                                   password='abdcef123')
+        cat = Category.objects.create(name='name')
+        prod = Product.objects.create(name='name',
+                                      brands='brand',
+                                      link='http://url.com',
+                                      nutriscore='B',
+                                      image='http://imageurl.com',
+                                      fat=1,
+                                      saturated_fat=1,
+                                      sugars=1,
+                                      salt=1)
 
-    def test_string(self):
+        sub = Product.objects.create(name='nametest',
+                                     brands='testbrand',
+                                     link='http://testurl.com',
+                                     nutriscore='A',
+                                     image='http://testimageurl.com',
+                                     fat=0,
+                                     saturated_fat=0,
+                                     sugars=0,
+                                     salt=0)
+        cat.products.add(prod)
+        cat.products.add(sub)
+        cat.save()
+        Favorite.objects.create(user_id=user.id, sub_id=sub.id, prod_id=prod.id)
+
+    def test_cat_string(self):
         cat = Category.objects.first()
         self.assertEqual(str(cat), 'name')
+
+    def test_prod_string(self):
+        prod = Product.objects.first()
+        self.assertEqual(str(prod), 'name')
+
+    def test_sub_string(self):
+        sub = Favorite.objects.first()
+        self.assertEqual(str(sub), 'nametest remplace : name sauvegardé par : name')
