@@ -47,7 +47,7 @@ class Favorite(models.Model):
 
     def __str__(self):
         return str(self.sub) + " remplace : " + str(self.prod) \
-               + " Sauvegardé par : " \
+               + " sauvegardé par : " \
                + str(self.user)
 
     class Meta:
