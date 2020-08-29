@@ -46,7 +46,7 @@ class TestUserViews(TestCase):
         self.assertTemplateUsed(response, 'login.html')
 
     def test_logout_logged_out_view(self):
-        """When the user is logged out"""
+        """When user is not logged in"""
         response = self.client.get(reverse('user:logout'))
         self.assertEqual(response.status_code, 302)
         self.assertTemplateUsed(redirect('login.html'))
@@ -60,7 +60,7 @@ class TestUserViews(TestCase):
         self.assertTemplateUsed(redirect('index.html'))
 
     def test_profile_logged_out_view(self):
-        """When the user is logged out"""
+        """When user is not logged in"""
         response = self.client.get(reverse('user:profile'))
         self.assertEqual(response.status_code, 302)
         self.assertTemplateUsed(redirect('login.html'))

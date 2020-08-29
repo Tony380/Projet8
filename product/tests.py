@@ -1,3 +1,4 @@
+""" This file contains all Tests about Product app """
 from django.test import TestCase
 from django.urls import reverse, resolve
 from .models import Category, Product, Favorite, User
@@ -6,6 +7,7 @@ from .views import product, search, substitute, \
 
 
 class TestProductUrls(TestCase):
+    """Test all Product app Urls"""
 
     def test_search_url(self):
         url = reverse('product:search')
@@ -33,8 +35,10 @@ class TestProductUrls(TestCase):
 
 
 class TestProductViews(TestCase):
+    """Test all Product app views"""
 
     def setUp(self):
+        """Creating objects for tests"""
         user = User.objects.create(username='name',
                                    password='abdcef123')
         cat = Category.objects.create(name='name')
@@ -65,11 +69,13 @@ class TestProductViews(TestCase):
                                 prod_id=prod.id)
 
     def test_bad_search_view(self):
+        """When nothing is found"""
         response = self.client.get(reverse('product:search'))
         self.assertEquals(response.status_code, 302)
         self.assertTemplateUsed(redirect('index.html'))
 
     def test_good_search_view(self):
+        """When there is a result"""
         response = self.client.get(reverse('product:search'),
                                    {'query': 'name'})
         self.assertEquals(response.status_code, 200)
@@ -116,6 +122,7 @@ class TestProductViews(TestCase):
         self.assertTemplateUsed(redirect('index.html'))
 
     def test_save_logged_out_view(self):
+        """When user is not logged in"""
         prod = Product.objects.first().id
         sub_id = Product.objects.last().id
         response = self.client.get(reverse('product:save',
@@ -124,11 +131,13 @@ class TestProductViews(TestCase):
         self.assertTemplateUsed(redirect('user/login.html'))
 
     def test_favorite_logged_out_view(self):
+        """When user is not logged in"""
         response = self.client.get(reverse('product:favorite'))
         self.assertEquals(response.status_code, 302)
         self.assertTemplateUsed(redirect('user/login.html'))
 
     def test_delete_logged_out_view(self):
+        """When user is not logged in"""
         fav = Favorite.objects.first().id
         response = self.client.get(reverse('product:delete',
                                            args=[fav]))
@@ -137,6 +146,7 @@ class TestProductViews(TestCase):
 
 
 class TestStringModels(TestCase):
+    """Test Product app's models string function"""
 
     def setUp(self):
         user = User.objects.create(username='name',
