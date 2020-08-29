@@ -1,9 +1,11 @@
+""" This file contains a Selenium test """
 from selenium import webdriver
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 import time
 
 
 class TestApp(StaticLiveServerTestCase):
+    """Test correct register form submission"""
 
     def setUp(self):
         self.driver = webdriver.Chrome()
