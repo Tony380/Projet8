@@ -27,7 +27,7 @@ class TestUserUrls(TestCase):
 
 
 class TestUserViews(TestCase):
-    """Test all User app Views"""
+    """Test all User app views"""
 
     def test_register_view(self):
         response = self.client.get(reverse('user:register'))
@@ -75,6 +75,7 @@ class TestUserViews(TestCase):
 
 
 class TestUserForms(TestCase):
+    """Test User app Form"""
 
     def test_valid_data(self):
         form = RegisterForm(data={

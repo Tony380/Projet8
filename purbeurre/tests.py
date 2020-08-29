@@ -1,9 +1,11 @@
+""" This file contains all Tests about Purbeurre app """
 from django.test import TestCase
 from django.urls import reverse, resolve
 from .views import index, legal
 
 
 class TestPurbeurreUrls(TestCase):
+    """Test all Purbeurre app Urls"""
 
     def test_index_url(self):
         url = reverse('index')
@@ -15,6 +17,7 @@ class TestPurbeurreUrls(TestCase):
 
 
 class TestPurbeurreViews(TestCase):
+    """Test all User Purbeurre views"""
 
     def test_index_view(self):
         response = self.client.get(reverse('index'))
