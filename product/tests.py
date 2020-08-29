@@ -174,7 +174,10 @@ class TestStringModels(TestCase):
         cat.products.add(prod)
         cat.products.add(sub)
         cat.save()
-        Favorite.objects.create(user_id=user.id, sub_id=sub.id, prod_id=prod.id)
+        Favorite.objects.create(
+            user_id=user.id,
+            sub_id=sub.id,
+            prod_id=prod.id)
 
     def test_cat_string(self):
         cat = Category.objects.first()
@@ -186,4 +189,5 @@ class TestStringModels(TestCase):
 
     def test_sub_string(self):
         sub = Favorite.objects.first()
-        self.assertEqual(str(sub), 'nametest remplace : name sauvegardé par : name')
+        self.assertEqual(str(sub),
+                         'nametest remplace : name sauvegardé par : name')
