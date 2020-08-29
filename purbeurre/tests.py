@@ -28,3 +28,8 @@ class TestPurbeurreViews(TestCase):
         response = self.client.get(reverse('legal'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'legal.html')
+
+    def test_404_view(self):
+        response = self.client.get('/test404')
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, '404.html')
