@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
-ALLOWED_HOSTS = ['purbeurre2020.herokuapp.com']
+ALLOWED_HOSTS = ['purbeurre2020.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
