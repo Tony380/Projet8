@@ -108,6 +108,17 @@ class TestProductViews(TestCase):
         self.assertEquals(response.status_code, 302)
         self.assertTemplateUsed(redirect('index.html'))
 
+    def test_save_already_saved_view(self):
+        user = User.objects.first()
+        self.client.force_login(user)
+        prod_id = Product.objects.first().id
+        sub_id = Product.objects.last().id
+        response = self.client.get(reverse(
+            'product:save', args=[sub_id, prod_id]))
+        self.assertEqual(response.status_code, 302,
+                         'Le produit est déjà sauvegardé')
+        self.assertTemplateUsed(redirect('index.html'))
+
     def test_favorite_logged_in_view(self):
         user = User.objects.first()
         self.client.force_login(user)
