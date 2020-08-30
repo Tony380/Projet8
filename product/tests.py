@@ -68,16 +68,19 @@ class TestProductViews(TestCase):
                                 sub_id=sub.id,
                                 prod_id=prod.id)
 
-    def test_bad_search_view(self):
-        """When nothing is found"""
+    def test_no_search_view(self):
         response = self.client.get(reverse('product:search'))
         self.assertEquals(response.status_code, 302)
         self.assertTemplateUsed(redirect('index.html'))
 
+    def test_bad_search_view(self):
+        response = self.client.get(reverse('product:search'), {'query': 'no_products'})
+        self.assertEquals(response.status_code, 302,
+                          "Nous n'avons trouvé aucun produit correspondant à votre recherche")
+        self.assertTemplateUsed(redirect('index.html'))
+
     def test_good_search_view(self):
-        """When there is a result"""
-        response = self.client.get(reverse('product:search'),
-                                   {'query': 'name'})
+        response = self.client.get(reverse('product:search'), {'query': 'name'})
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'product/search.html')
 
