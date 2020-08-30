@@ -1,19 +1,6 @@
 """ This file contains all Tests about Purbeurre app """
 from django.test import TestCase
-from django.urls import reverse, resolve
-from .views import index, legal
-
-
-class TestPurbeurreUrls(TestCase):
-    """Test all Purbeurre app Urls"""
-
-    def test_index_url(self):
-        url = reverse('index')
-        self.assertEquals(resolve(url).func, index)
-
-    def test_legal_url(self):
-        url = reverse('legal')
-        self.assertEquals(resolve(url).func, legal)
+from django.urls import reverse
 
 
 class TestPurbeurreViews(TestCase):

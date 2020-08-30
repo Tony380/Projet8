@@ -1,29 +1,9 @@
 """ This file contains all Tests about User app """
 from django.test import TestCase
-from django.urls import reverse, resolve
+from django.urls import reverse
 from django.contrib.auth.models import User
 from .forms import RegisterForm
-from .views import register, LoginFormView, logout_view, profile, redirect
-
-
-class TestUserUrls(TestCase):
-    """Test all User app Urls"""
-
-    def test_register_url(self):
-        url = reverse('user:register')
-        self.assertEquals(resolve(url).func, register)
-
-    def test_login_url(self):
-        url = reverse('user:login')
-        self.assertEquals(resolve(url).func.view_class, LoginFormView)
-
-    def test_logout_url(self):
-        url = reverse('user:logout')
-        self.assertEquals(resolve(url).func, logout_view)
-
-    def test_profile_url(self):
-        url = reverse('user:profile')
-        self.assertEquals(resolve(url).func, profile)
+from .views import redirect
 
 
 class TestUserViews(TestCase):

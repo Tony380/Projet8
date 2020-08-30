@@ -1,37 +1,8 @@
 """ This file contains all Tests about Product app """
 from django.test import TestCase
-from django.urls import reverse, resolve
+from django.urls import reverse
 from .models import Category, Product, Favorite, User
-from .views import product, search, substitute, \
-    save, delete, favorite, redirect
-
-
-class TestProductUrls(TestCase):
-    """Test all Product app Urls"""
-
-    def test_search_url(self):
-        url = reverse('product:search')
-        self.assertEquals(resolve(url).func, search)
-
-    def test_product_url(self):
-        url = reverse('product:product', args=['1'])
-        self.assertEquals(resolve(url).func, product)
-
-    def test_substitute_url(self):
-        url = reverse('product:substitute', args=['1'])
-        self.assertEquals(resolve(url).func, substitute)
-
-    def test_save_url(self):
-        url = reverse('product:save', args=['1', '2'])
-        self.assertEquals(resolve(url).func, save)
-
-    def test_favorite_url(self):
-        url = reverse('product:favorite')
-        self.assertEquals(resolve(url).func, favorite)
-
-    def test_delete_url(self):
-        url = reverse('product:delete', args=['1'])
-        self.assertEquals(resolve(url).func, delete)
+from .views import redirect
 
 
 class TestProductViews(TestCase):
