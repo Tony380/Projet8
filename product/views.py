@@ -62,14 +62,11 @@ def substitute(request, product_id):
     cat = prod.categories.get()
     subs = cat.products.all().order_by('nutriscore', 'id')
     sub_list = []
-
     for i in subs:
-        if i.nutriscore < prod.nutriscore:
+        if i.nutriscore <= prod.nutriscore:
             sub_list.append(i)
-        elif i.nutriscore == prod.nutriscore:
-            sub_list.append(i)
-    sub_list.remove(prod)
 
+    sub_list.remove(prod)
     context = {'prod': prod,
                'page_obj': paginate(request, sub_list)}
     return render(request, 'product/substitute.html', context)
