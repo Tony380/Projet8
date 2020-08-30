@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 
-class TestPurbeurreViews(TestCase):
+class TestPurbeurre(TestCase):
     """Test all User Purbeurre views"""
 
     def test_index_view(self):

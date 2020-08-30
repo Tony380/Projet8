@@ -6,7 +6,7 @@ from .forms import RegisterForm
 from .views import redirect
 
 
-class TestUserViews(TestCase):
+class TestUser(TestCase):
     """Test all User app views"""
 
     def test_register_view(self):

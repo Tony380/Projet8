@@ -5,7 +5,7 @@ from .models import Category, Product, Favorite, User
 from .views import redirect
 
 
-class TestProductViews(TestCase):
+class TestProduct(TestCase):
     """Test all Product app views"""
 
     def setUp(self):
@@ -128,41 +128,6 @@ class TestProductViews(TestCase):
                                            args=[fav]))
         self.assertEquals(response.status_code, 302)
         self.assertTemplateUsed(redirect('user/login.html'))
-
-
-class TestStringModels(TestCase):
-    """Test Product app's models string function"""
-
-    def setUp(self):
-        user = User.objects.create(username='name',
-                                   password='abdcef123')
-        cat = Category.objects.create(name='name')
-        prod = Product.objects.create(name='name',
-                                      brands='brand',
-                                      link='http://url.com',
-                                      nutriscore='B',
-                                      image='http://imageurl.com',
-                                      fat=1,
-                                      saturated_fat=1,
-                                      sugars=1,
-                                      salt=1)
-
-        sub = Product.objects.create(name='nametest',
-                                     brands='testbrand',
-                                     link='http://testurl.com',
-                                     nutriscore='A',
-                                     image='http://testimageurl.com',
-                                     fat=0,
-                                     saturated_fat=0,
-                                     sugars=0,
-                                     salt=0)
-        cat.products.add(prod)
-        cat.products.add(sub)
-        cat.save()
-        Favorite.objects.create(
-            user_id=user.id,
-            sub_id=sub.id,
-            prod_id=prod.id)
 
     def test_cat_string(self):
         cat = Category.objects.first()
