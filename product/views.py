@@ -85,12 +85,10 @@ def save(request, product_id, prod_id):
                                     sub_id=product_id,
                                     prod_id=prod_id)
             messages.success(request, 'Produit sauvegardé')
-            return redirect('index')
         else:
             messages.success(request, 'Le produit est déjà sauvegardé')
-            return redirect('index')
 
-    except IntegrityError:
+    finally:
         return redirect('index')
 
 
