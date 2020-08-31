@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 from product.models import Category, Product
 from django.db.utils import IntegrityError
 import requests
+from django.db import transaction
 
 
 class Command(BaseCommand):
@@ -27,22 +28,23 @@ class Command(BaseCommand):
             for i in products:
                 # avoid products with missing data
                 try:
-                    if i.get("product_name", False) and\
-                            i.get("brands", False) and \
-                            i.get("nutrition_grades", False) and\
-                            i.get("image_front_url", False):
-                        product = Product.objects.create(
-                            name=i["product_name"],
-                            brands=i["brands"],
-                            link=i["url"],
-                            nutriscore=i["nutrition_grades"],
-                            image=i["image_front_url"],
-                            fat=i["nutriments"]["fat_100g"],
-                            saturated_fat=i["nutriments"]
-                            ["saturated-fat_100g"],
-                            sugars=i["nutriments"]["sugars_100g"],
-                            salt=i["nutriments"]["salt_100g"], )
-                        cat.products.add(product)
+                    with transaction.atomic():
+                        if i.get("product_name", False) and\
+                                i.get("brands", False) and \
+                                i.get("nutrition_grades", False) and\
+                                i.get("image_front_url", False):
+                            product = Product.objects.create(
+                                name=i["product_name"],
+                                brands=i["brands"],
+                                link=i["url"],
+                                nutriscore=i["nutrition_grades"],
+                                image=i["image_front_url"],
+                                fat=i["nutriments"]["fat_100g"],
+                                saturated_fat=i["nutriments"]
+                                ["saturated-fat_100g"],
+                                sugars=i["nutriments"]["sugars_100g"],
+                                salt=i["nutriments"]["salt_100g"], )
+                            cat.products.add(product)
 
                 except IntegrityError:
                     pass

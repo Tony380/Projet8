@@ -3,6 +3,8 @@ from django.test import TestCase
 from django.urls import reverse
 from .models import Category, Product, Favorite, User
 from .views import redirect
+from io import StringIO
+from django.core.management import call_command
 
 
 class TestProduct(TestCase):
@@ -141,3 +143,10 @@ class TestProduct(TestCase):
         sub = Favorite.objects.first()
         self.assertEqual(str(sub),
                          'nametest remplace : name sauvegardé par : name')
+
+
+class TestFillDatabase(TestCase):
+    def test_fill_database(self):
+        out = StringIO()
+        call_command('fill_database', stdout=out)
+        self.assertIn('Base de données remplie avec succès', out.getvalue())
