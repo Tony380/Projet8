@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Product, Favorite
 from django.contrib import messages
-from django.db import IntegrityError
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
