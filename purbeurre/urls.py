@@ -22,8 +22,8 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('legal', views.legal, name='legal'),
     path('admin/', admin.site.urls),
-    path('product/', include('product.urls')),
-    path('user/', include('user.urls')),
+    path('core/', include('core.urls')),
+    path('users/', include('users.urls')),
 ]
 
 handler404 = views.my_404_view

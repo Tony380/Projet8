@@ -42,41 +42,41 @@ class TestProduct(TestCase):
                                 prod_id=prod.id)
 
     def test_no_search_view(self):
-        response = self.client.get(reverse('product:search'))
+        response = self.client.get(reverse('core:search'))
         self.assertEquals(response.status_code, 302)
         self.assertTemplateUsed(redirect('index.html'))
 
     def test_bad_search_view(self):
-        response = self.client.get(reverse('product:search'), {'query': 'no_products'})
+        response = self.client.get(reverse('core:search'), {'query': 'no_products'})
         self.assertEquals(response.status_code, 302,
                           "Nous n'avons trouvé aucun produit correspondant à votre recherche")
         self.assertTemplateUsed(redirect('index.html'))
 
     def test_good_search_view(self):
-        response = self.client.get(reverse('product:search'), {'query': 'name'})
+        response = self.client.get(reverse('core:search'), {'query': 'name'})
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'product/search.html')
+        self.assertTemplateUsed(response, 'core/search.html')
 
     def test_product_view(self):
         prod_id = Product.objects.first().id
-        response = self.client.get(reverse('product:product',
+        response = self.client.get(reverse('core:product',
                                            args=[prod_id]))
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'product/product.html')
+        self.assertTemplateUsed(response, 'core/product.html')
 
     def test_substitute_view(self):
         sub_id = Product.objects.last().id
-        response = self.client.get(reverse('product:substitute',
+        response = self.client.get(reverse('core:substitute',
                                            args=[sub_id]))
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, 'product/substitute.html')
+        self.assertTemplateUsed(response, 'core/substitute.html')
 
     def test_save_logged_in_view(self):
         user = User.objects.first()
         self.client.force_login(user)
         prod = Product.objects.first().id
         sub_id = Product.objects.last().id
-        response = self.client.get(reverse('product:save',
+        response = self.client.get(reverse('core:save',
                                            args=[prod, sub_id]))
         self.assertEquals(response.status_code, 302)
         self.assertTemplateUsed(redirect('index.html'))
@@ -87,7 +87,7 @@ class TestProduct(TestCase):
         prod_id = Product.objects.first().id
         sub_id = Product.objects.last().id
         response = self.client.get(reverse(
-            'product:save', args=[sub_id, prod_id]))
+            'core:save', args=[sub_id, prod_id]))
         self.assertEqual(response.status_code, 302,
                          'Le produit est déjà sauvegardé')
         self.assertTemplateUsed(redirect('index.html'))
@@ -95,7 +95,7 @@ class TestProduct(TestCase):
     def test_favorite_logged_in_view(self):
         user = User.objects.first()
         self.client.force_login(user)
-        response = self.client.get(reverse('product:favorite'))
+        response = self.client.get(reverse('core:favorite'))
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'favorite.html')
 
@@ -103,7 +103,7 @@ class TestProduct(TestCase):
         user = User.objects.first()
         self.client.force_login(user)
         fav = Favorite.objects.first().id
-        response = self.client.get(reverse('product:delete',
+        response = self.client.get(reverse('core:delete',
                                            args=[fav]))
         self.assertEquals(response.status_code, 302)
         self.assertTemplateUsed(redirect('index.html'))
@@ -112,24 +112,24 @@ class TestProduct(TestCase):
         """When user is not logged in"""
         prod = Product.objects.first().id
         sub_id = Product.objects.last().id
-        response = self.client.get(reverse('product:save',
+        response = self.client.get(reverse('core:save',
                                            args=[prod, sub_id]))
         self.assertEquals(response.status_code, 302)
-        self.assertTemplateUsed(redirect('user/login.html'))
+        self.assertTemplateUsed(redirect('users/login.html'))
 
     def test_favorite_logged_out_view(self):
         """When user is not logged in"""
-        response = self.client.get(reverse('product:favorite'))
+        response = self.client.get(reverse('core:favorite'))
         self.assertEquals(response.status_code, 302)
-        self.assertTemplateUsed(redirect('user/login.html'))
+        self.assertTemplateUsed(redirect('users/login.html'))
 
     def test_delete_logged_out_view(self):
         """When user is not logged in"""
         fav = Favorite.objects.first().id
-        response = self.client.get(reverse('product:delete',
+        response = self.client.get(reverse('core:delete',
                                            args=[fav]))
         self.assertEquals(response.status_code, 302)
-        self.assertTemplateUsed(redirect('user/login.html'))
+        self.assertTemplateUsed(redirect('users/login.html'))
 
     def test_cat_string(self):
         cat = Category.objects.first()

@@ -1,6 +1,6 @@
 """ Contains database filler """
 from django.core.management.base import BaseCommand
-from product.models import Category, Product
+from core.models import Category, Product
 from django.db.utils import IntegrityError
 import requests
 from django.db import transaction

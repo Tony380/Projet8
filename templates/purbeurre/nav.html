@@ -9,22 +9,22 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 <li class="nav-item">
-                    <form class="input-group mt-2" action="{% url 'product:search' %}" method="get">
+                    <form class="input-group mt-2" action="{% url 'core:search' %}" method="get">
                         <input type="text" class="form-control" placeholder="Chercher" name="query">
                     </form>
                 </li>
                 {% if user.is_authenticated %}
-                    <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'user:profile' %}">
+                    <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'users:profile' %}">
                         <i class="fas fa-user fa-2x ml-2" title="Mon profil"></i>
                     </a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'product:favorite' %}" title="Mes favoris">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{% url 'core:favorite' %}" title="Mes favoris">
                         {% include 'carrot.svg' %}
                     </a></li>
-                    <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'user:logout' %}">
+                    <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'users:logout' %}">
                         <i class="fas fa-sign-out-alt fa-2x ml-2" title="Se déconnecter"></i>
                     </a></li>
                 {% else %}
-                    <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'user:login' %}">
+                    <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'users:login' %}">
                         <i class="fas fa-sign-in-alt fa-2x ml-2" title="Se connecter"></i>
                     </a></li>
                 {% endif %}

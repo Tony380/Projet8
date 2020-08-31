@@ -9,4 +9,4 @@ urlpatterns = [
     path('profile', views.profile, name='profile')
 ]
 
-app_name = 'user'
+app_name = 'users'

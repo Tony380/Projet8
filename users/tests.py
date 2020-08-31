@@ -10,24 +10,24 @@ class TestUser(TestCase):
     """Test all User app views"""
 
     def test_register_view(self):
-        response = self.client.get(reverse('user:register'))
+        response = self.client.get(reverse('users:register'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'register.html')
 
     def test_bad_register_view(self):
         """Test when information introduced is wrong"""
-        response = self.client.post(reverse('user:register'))
+        response = self.client.post(reverse('users:register'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'register.html')
 
     def test_login_view(self):
-        response = self.client.get(reverse('user:login'))
+        response = self.client.get(reverse('users:login'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'login.html')
 
     def test_logout_logged_out_view(self):
         """When user is not logged in"""
-        response = self.client.get(reverse('user:logout'))
+        response = self.client.get(reverse('users:logout'))
         self.assertEqual(response.status_code, 302)
         self.assertTemplateUsed(redirect('login.html'))
 
@@ -35,13 +35,13 @@ class TestUser(TestCase):
         """When the user is logged in"""
         user = User.objects.create(username="name")
         self.client.force_login(user)
-        response = self.client.get(reverse('user:logout'))
+        response = self.client.get(reverse('users:logout'))
         self.assertEqual(response.status_code, 302)
         self.assertTemplateUsed(redirect('index.html'))
 
     def test_profile_logged_out_view(self):
         """When user is not logged in"""
-        response = self.client.get(reverse('user:profile'))
+        response = self.client.get(reverse('users:profile'))
         self.assertEqual(response.status_code, 302)
         self.assertTemplateUsed(redirect('login.html'))
 
@@ -49,7 +49,7 @@ class TestUser(TestCase):
         """When the user is logged in"""
         user = User.objects.create(username="name")
         self.client.force_login(user)
-        response = self.client.get(reverse('user:profile'))
+        response = self.client.get(reverse('users:profile'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'profile.html')
 

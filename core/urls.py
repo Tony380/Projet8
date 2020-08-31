@@ -10,4 +10,4 @@ urlpatterns = [
     path('delete/<int:fav>', views.delete, name='delete'),
 ]
 
-app_name = 'product'
+app_name = 'core'

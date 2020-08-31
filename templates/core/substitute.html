@@ -18,14 +18,14 @@
                             <div class="nutriscore nutriscore-{{ sub.nutriscore }} text-center">
                                 {{ sub.nutriscore|upper }}
                             </div>
-                            <a class="mx-auto" title="Voir la fiche de ce produit" href="{% url 'product:product' product_id=sub.id %}">
+                            <a class="mx-auto" title="Voir la fiche de ce produit" href="{% url 'core:product' product_id=sub.id %}">
                                 <img src="{{ sub.image }}" class="image_url img-fluid mt-3 mx-auto" alt="Photo du produit">
                             </a>
                             <div id="card" class="card-body">
                                 <h5 class="card-title short" title="{{ sub.name }}">{{ sub.name }}</h5>
                                 <p class="card-text short" title="{{ sub.brands }}">Marque: {{ sub.brands }}</p>
                                 {% if user.is_authenticated %}
-                                    <a href="{% url 'product:save' product_id=sub.id prod_id=prod.id %}" class="btn btn-primary d-block w-50 mx-auto">
+                                    <a href="{% url 'core:save' product_id=sub.id prod_id=prod.id %}" class="btn btn-primary d-block w-50 mx-auto">
                                         <i class="fas fa-save mr-2"></i>Sauvegarder
                                     </a>
                                 {% endif %}

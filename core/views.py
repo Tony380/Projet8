@@ -42,7 +42,7 @@ def search(request):
 
         context = {'page_obj': paginate(request, products),
                    'query': query}
-        return render(request, 'product/search.html', context)
+        return render(request, 'core/search.html', context)
 
     else:
         messages.success(request, "Vous n'avez rien saisi")
@@ -53,7 +53,7 @@ def product(request, product_id):
     """ Display the product's information """
     prod = Product.objects.get(id=product_id)
     context = {'prod': prod}
-    return render(request, 'product/product.html', context)
+    return render(request, 'core/product.html', context)
 
 
 def substitute(request, product_id):
@@ -69,7 +69,7 @@ def substitute(request, product_id):
     sub_list.remove(prod)
     context = {'prod': prod,
                'page_obj': paginate(request, sub_list)}
-    return render(request, 'product/substitute.html', context)
+    return render(request, 'core/substitute.html', context)
 
 
 @login_required
@@ -98,7 +98,7 @@ def favorite(request):
     user = request.user
     favs = Favorite.objects.filter(user_id=user.id)
 
-    context = {'user': user,
+    context = {'users': user,
                'page_obj': paginate(request, favs)}
     return render(request, 'favorite.html', context)
 

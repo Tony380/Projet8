@@ -19,13 +19,13 @@
                                 <div class="nutriscore nutriscore-{{ fav.sub.nutriscore }} text-center">
                                     {{ fav.sub.nutriscore|upper }}
                                 </div>
-                                <a class="mx-auto" title="Voir la fiche de ce produit" href="{% url 'product:product' product_id=fav.sub.id %}">
+                                <a class="mx-auto" title="Voir la fiche de ce produit" href="{% url 'core:product' product_id=fav.sub.id %}">
                                     <img src="{{ fav.sub.image }}" class="image_url img-fluid mt-3 mx-auto" alt="Photo du produit">
                                 </a>
                                 <div id="card" class="card-body">
                                     <h5 class="card-title short" title="{{ fav.sub.name }}">{{ fav.sub.name }}</h5>
                                     <p class="card-text short" title="{{ fav.sub.brands }}">Marque: {{ fav.sub.brands }}</p>
-                                    <a href="{% url 'product:substitute' product_id=fav.sub.id %}" class="btn btn-primary d-block w-75 mx-auto">
+                                    <a href="{% url 'core:substitute' product_id=fav.sub.id %}" class="btn btn-primary d-block w-75 mx-auto">
                                         Rechercher un substitut
                                     </a>
                                 </div>
@@ -33,7 +33,7 @@
                         </div>
                         <div class="col-md-4 my-auto">
                             <h2 class="text-center mb-5">Remplace</h2>
-                            <a href="{% url 'product:delete' fav=fav.id %}" class="btn btn-danger d-block w-50 mx-auto">
+                            <a href="{% url 'core:delete' fav=fav.id %}" class="btn btn-danger d-block w-50 mx-auto">
                                 Supprimer ce favori
                             </a>
                         </div>
@@ -42,13 +42,13 @@
                                 <div class="nutriscore nutriscore-{{ fav.prod.nutriscore }} text-center">
                                     {{ fav.prod.nutriscore|upper }}
                                 </div>
-                                <a class="mx-auto" title="Voir la fiche de ce produit" href="{% url 'product:product' product_id=fav.prod.id %}">
+                                <a class="mx-auto" title="Voir la fiche de ce produit" href="{% url 'core:product' product_id=fav.prod.id %}">
                                     <img src="{{ fav.prod.image }}" class="image_url img-fluid mt-3 mx-auto" alt="Photo du produit">
                                 </a>
                                 <div class="card-body">
                                     <h5 class="card-title short" title="{{ fav.prod.name }}">{{ fav.prod.name }}</h5>
                                     <p class="card-text short" title="{{ fav.prod.brands }}">Marque: {{ fav.prod.brands }}</p>
-                                    <a href="{% url 'product:substitute' product_id=fav.prod.id %}" class="btn btn-primary d-block w-75 mx-auto">
+                                    <a href="{% url 'core:substitute' product_id=fav.prod.id %}" class="btn btn-primary d-block w-75 mx-auto">
                                         Rechercher un substitut
                                     </a>
                                 </div>

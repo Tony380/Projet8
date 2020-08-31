@@ -11,7 +11,7 @@ class TestApp(StaticLiveServerTestCase):
         self.driver = webdriver.Chrome()
 
     def test_register_form_submission_with_button(self):
-        self.driver.get(str(self.live_server_url) + '/user/register')
+        self.driver.get(str(self.live_server_url) + '/users/register')
         username_input = self.driver.find_element_by_id('id_username')
         email_input = self.driver.find_element_by_id('id_email')
         password1_input = self.driver.find_element_by_id('id_password1')

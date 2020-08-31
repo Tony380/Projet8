@@ -29,8 +29,8 @@ ALLOWED_HOSTS = ['purbeurre2020.herokuapp.com', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'user.apps.UserConfig',
-    'product.apps.ProductConfig',
+    'users.apps.UserConfig',
+    'core.apps.ProductConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,8 +63,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['templates',
                  'templates/purbeurre',
-                 'templates/product',
-                 'templates/user'],
+                 'templates/core',
+                 'templates/users'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -153,7 +153,7 @@ else:
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_URL = '/user/login'
+LOGIN_URL = '/users/login'
 
 LOGIN_REDIRECT_URL = '/'
 
