@@ -5,9 +5,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
 
-def paginate(request, args, pages):
+def paginate(request, args, prods_per_page):
     """ Paginate function """
-    paginator = Paginator(args, pages)
+    paginator = Paginator(args, prods_per_page)
     page_number = request.GET.get('page', 1)
 
     try:
