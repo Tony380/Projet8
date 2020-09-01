@@ -97,8 +97,7 @@ def favorite(request):
     user = request.user
     favs = Favorite.objects.filter(user_id=user.id)
 
-    context = {'users': user,
-               'page_obj': paginate(request, favs)}
+    context = {'page_obj': paginate(request, favs)}
     return render(request, 'favorite.html', context)
 
 
