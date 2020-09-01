@@ -47,9 +47,11 @@ class TestProduct(TestCase):
         self.assertTemplateUsed(redirect('index.html'))
 
     def test_bad_search_view(self):
-        response = self.client.get(reverse('core:search'), {'query': 'no_products'})
+        response = self.client.get(reverse('core:search'), {
+            'query': 'no_products'})
         self.assertEquals(response.status_code, 302,
-                          "Nous n'avons trouvé aucun produit correspondant à votre recherche")
+                          "Nous n'avons trouvé aucun produit "
+                          "correspondant à votre recherche")
         self.assertTemplateUsed(redirect('index.html'))
 
     def test_good_search_view(self):
