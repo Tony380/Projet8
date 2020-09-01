@@ -5,9 +5,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 
 
-def paginate(request, args):
+def paginate(request, args, pages):
     """ Paginate function """
-    paginator = Paginator(args, 9)
+    paginator = Paginator(args, pages)
     page_number = request.GET.get('page', 1)
 
     try:
@@ -39,7 +39,7 @@ def search(request):
                              "correspondant à votre recherche")
             return redirect('index')
 
-        context = {'page_obj': paginate(request, products),
+        context = {'page_obj': paginate(request, products, 9),
                    'query': query}
         return render(request, 'core/search.html', context)
 
@@ -67,7 +67,7 @@ def substitute(request, product_id):
 
     sub_list.remove(prod)
     context = {'prod': prod,
-               'page_obj': paginate(request, sub_list)}
+               'page_obj': paginate(request, sub_list, 9)}
     return render(request, 'core/substitute.html', context)
 
 
@@ -97,7 +97,7 @@ def favorite(request):
     user = request.user
     favs = Favorite.objects.filter(user_id=user.id)
 
-    context = {'page_obj': paginate(request, favs)}
+    context = {'page_obj': paginate(request, favs, 3)}
     return render(request, 'favorite.html', context)
 
 
