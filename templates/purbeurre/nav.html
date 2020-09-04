@@ -24,6 +24,9 @@
                         <i class="fas fa-sign-out-alt fa-2x ml-2" title="Se déconnecter"></i>
                     </a></li>
                 {% else %}
+                    <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'users:register' %}">
+                        <i class="fas fa-user-plus fa-2x ml-2" title="Créer un compte"></i>
+                    </a></li>
                     <li class="nav-item mt-3"><a class="nav-link js-scroll-trigger" href="{% url 'users:login' %}">
                         <i class="fas fa-sign-in-alt fa-2x ml-2" title="Se connecter"></i>
                     </a></li>
